@@ -11,7 +11,7 @@ body {
   height: 100vh;
   overflow: hidden;
   overscroll-behavior: none;
-  background: darkcyan;
+  background: rgb(20, 20, 20);
 }
 
 .img {

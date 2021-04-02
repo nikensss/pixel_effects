@@ -7,7 +7,7 @@ draw('canvas4', (canvas, context) => {
     .map((e) => new Pixel(...e));
 
   const greyScale = createImageFromPixels(
-    pixels.map((p) => p.tintBlue(130)),
+    pixels.map((p) => p.tintBlue(100)),
     scannedImage.width,
     scannedImage.height
   );
