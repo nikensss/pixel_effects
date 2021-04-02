@@ -32,15 +32,21 @@ class Pixel {
   }
 
   tintRed(red) {
-    return new Pixel(Math.min(this.r + red, 255), this.g, this.b, this.a);
+    return this.tint('r', red);
   }
 
   tintGreen(green) {
-    return new Pixel(this.r, Math.min(this.g + green, 255), this.b, this.a);
+    return this.tint('g', green);
   }
 
   tintBlue(blue) {
-    return new Pixel(this.r, this.g, Math.min(this.b + blue, 255), this.a);
+    return this.tint('b', blue);
+  }
+
+  tint(color, value) {
+    const p = this.toGreyScale();
+    p[color] = Math.min(p[color] + value, 255);
+    return p;
   }
 
   get data() {
