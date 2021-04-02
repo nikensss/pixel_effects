@@ -4,14 +4,21 @@
   box-sizing: border-box;
 }
 body {
-  display: grid;
+  display: flex;
+  flex-wrap: wrap;
   place-items: center;
   width: 100vw;
   height: 100vh;
   overflow: hidden;
+  overscroll-behavior: none;
   background: darkcyan;
 }
 
-svg {
-  width: 97%;
+.img {
+  flex-basis: 50%;
+  height: 50vh;
+}
+
+.img > * {
+  padding: 0.2rem;
 }
