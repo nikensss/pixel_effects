@@ -21,9 +21,7 @@ const draw = (canvasId, action) => {
       canvas.height
     );
 
-    const pixels = scannedImage.data
-      .reduce(inArraysOf(4), [])
-      .map((e) => new Pixel(...e));
+    const pixels = getPixels(scannedImage);
 
     if (!action) action = (pixels) => pixels.map((p) => p.toGreyScale());
 

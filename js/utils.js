@@ -10,6 +10,12 @@ const inArraysOf = (length) => (t, c) => {
   return t;
 };
 
+const getPixels = (scannedImage) => {
+  return scannedImage.data
+    .reduce(inArraysOf(4), [])
+    .map((e) => new Pixel(...e));
+};
+
 const createImageFromPixels = (pixels, width, height) => {
   return new ImageData(
     Uint8ClampedArray.from(pixels.map((p) => p.data).flat()),
