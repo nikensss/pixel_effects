@@ -4,3 +4,14 @@
   box-sizing: border-box;
   background: black;
 }
+
+body {
+  display: grid;
+  width: 100vw;
+  height: 100vh;
+  place-items: center;
+}
+
+#canvas1 {
+  border: 2px solid gray;
+}

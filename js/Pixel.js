@@ -29,6 +29,22 @@ class Pixel {
     return p;
   }
 
+  getRelativeBrightness() {
+    return (
+      Math.sqrt(
+        this.r ** 2 * 0.299 + this.g ** 2 * 0.587 + this.b ** 2 * 0.114
+      ) / 255
+    );
+  }
+
+  getComplementary() {
+    const r = 255 - this.r;
+    const g = 255 - this.g;
+    const b = 255 - this.b;
+
+    return `rgb(${r},${g},${b})`;
+  }
+
   get data() {
     return [this.r, this.g, this.b, this.a];
   }
