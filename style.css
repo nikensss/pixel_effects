@@ -1,10 +1,15 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
 body {
   display: grid;
   place-items: center;
   width: 100vw;
   height: 100vh;
   overflow: hidden;
-  padding: 0.2rem;
+  background: darkcyan;
 }
 
 svg {
