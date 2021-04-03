@@ -4,14 +4,29 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="css/style.css" />
+
     <title>Particle rain</title>
   </head>
   <body>
+    <div class="buttons">
+      <button class="btn btn-white" data-state="white">White</button>
+      <button class="btn btn-white" data-state="transparent">
+        Transparent
+      </button>
+      <button class="btn btn-complementary" data-state="complementary">
+        Complementary
+      </button>
+      <button class="btn btn-shadesofblue" data-state="shadesOfBlue">
+        Shades of blue
+      </button>
+      <button class="btn btn-random" data-state="random">Random</button>
+    </div>
     <canvas id="canvas1"></canvas>
     <script src="../js/Pixel.js"></script>
     <script src="../js/Pixels.js"></script>
     <script src="Particle.js"></script>
+    <script src="Buttons.js"></script>
     <script src="../js/utils.js"></script>
     <script src="index.js"></script>
   </body>

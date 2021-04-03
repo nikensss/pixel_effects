@@ -37,6 +37,14 @@ class Pixel {
     );
   }
 
+  getColor() {
+    const r = this.r;
+    const g = this.g;
+    const b = this.b;
+
+    return `rgb(${r},${g},${b})`;
+  }
+
   getComplementary() {
     const r = 255 - this.r;
     const g = 255 - this.g;
