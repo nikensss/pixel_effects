@@ -13,7 +13,8 @@ body {
 }
 
 #canvas1 {
-  border: 2px solid gray;
+  border: 2px solid white;
+  border-radius: 12px;
 }
 
 .buttons {
@@ -23,6 +24,7 @@ body {
   justify-content: space-evenly;
   align-items: center;
   padding-top: 2rem;
+  background-color: transparent;
 }
 .buttons .btn {
   font-size: 1.4rem;

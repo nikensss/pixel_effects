@@ -1,40 +1,28 @@
-const shadesOfBlues = [
-  'powderblue',
-  'lightblue',
-  'lightskyblue',
-  'skyblue',
-  'deepskyblue',
-  'dodgerblue',
-  'cornflowerblue',
-  'aqua',
-  'aquamarine',
-  'turquoise'
-];
 class Particle {
   constructor(canvas, buttons) {
     this.canvas = canvas;
     this.context = this.canvas.getContext('2d');
-    this.x = Math.random() * this.canvas.width;
+    this.x = 0;
     this.y = Math.random() * this.canvas.height;
-    this.speed = 0;
-    this.velocity = Math.random() * 0.5;
-    this.size = (Math.random() * 1) / 5 + 1;
+    this.baseSpeed = Math.random() * 5;
+    this.size = Math.random() * 1.5;
     this.buttons = buttons;
-    this.seed = 0;
+    this.angle = 0;
   }
 
   update(pixels) {
-    this.speed =
-      (1 - pixels.getPixel(this.x, this.y).getRelativeBrightness()) ** 2;
+    const speed = pixels.getPixel(this.x, this.y).getRelativeBrightness();
+    this.size = speed;
+    const movement = speed + this.baseSpeed;
 
-    const movement = 2.5 * this.speed + this.velocity;
-    this.x += Math.random() * 2 - 1;
-    if (this.x < 0 || this.x > this.canvas.width) {
-      this.x = Math.random() * this.canvas.width;
-    }
-    this.y += movement;
-    if (this.y < 0) this.y = 0;
-    if (this.y >= this.canvas.height) this.y = 0;
+    this.angle += speed / 15;
+    this.x += movement + Math.cos(this.angle) * 2;
+    if (this.x < 0 || this.x >= this.canvas.width) this.x = 0;
+
+    this.y += movement + Math.sin(this.angle) * 2;
+    if (this.y < 0 || this.y >= this.canvas.height) this.y = 0;
+
+    // this.context.globalCompositeOperation = 'luminosity';
   }
 
   draw(pixels) {
@@ -51,11 +39,7 @@ class Particle {
           .getPixel(this.x, this.y)
           .getComplementary();
         break;
-      case 'shadesOfBlue':
-        const colors = shadesOfBlues;
-        this.context.fillStyle =
-          colors[Math.floor(Math.random() * colors.length)];
-        break;
+
       case 'random':
         this.context.fillStyle = randomRGB(this.seed++);
         break;
@@ -65,9 +49,14 @@ class Particle {
     this.context.arc(this.x, this.y, this.size, 0, Math.PI * 2);
     this.context.fill();
   }
+
+  random() {
+    this.x = 0;
+    this.y = Math.random() * this.canvas.height;
+  }
 }
 
-function randomRGB(seed) {
+function randomRGB() {
   const r = Math.floor(Math.random() * 256);
   const g = Math.floor(Math.random() * 256);
   const b = Math.floor(Math.random() * 256);
