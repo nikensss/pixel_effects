@@ -25,7 +25,7 @@ class Pixel {
 
   tint(color, value) {
     const p = this.toGreyScale();
-    p[color] = Math.min(p[color] + value, 255);
+    p[color] = Math.min(p[color] + (value || 127), 255);
     return p;
   }
 
