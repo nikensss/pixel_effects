@@ -1,6 +1,6 @@
 class Buttons {
   constructor() {
-    this.buttons = document.querySelectorAll('.btn');
+    this.buttons = document.querySelectorAll('.btn.btn-style');
     this.style = 'transparent';
 
     this.buttons.forEach((b) => {

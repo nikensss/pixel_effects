@@ -9,18 +9,32 @@
     <title>Particle rain</title>
   </head>
   <body>
-    <div class="buttons">
-      <button class="btn btn-white" data-state="white">White</button>
-      <button class="btn btn-white" data-state="transparent">
+    <div class="buttons top">
+      <button class="btn btn-style btn-white" data-state="white">White</button>
+      <button class="btn btn-style btn-white" data-state="transparent">
         Transparent
       </button>
-      <button class="btn btn-complementary" data-state="complementary">
+      <button
+        class="btn btn-style btn-complementary"
+        data-state="complementary"
+      >
         Complementary
       </button>
 
-      <button class="btn btn-random" data-state="random">Random</button>
+      <button class="btn btn-style btn-random" data-state="random">
+        Random
+      </button>
     </div>
-    <canvas id="canvas1"></canvas>
+    <div class="buttons bottom">
+      <button class="btn btn-image" data-image="code.svg">Code</button>
+      <button class="btn btn-image" data-image="Cyberpunk2077.jpeg">
+        Cyberpunk 2077
+      </button>
+      <button class="btn btn-image" data-image="FFX.jpeg">
+        Final Fantasy X
+      </button>
+    </div>
+    <canvas id="canvas"></canvas>
     <script src="../js/Pixel.js"></script>
     <script src="../js/Pixels.js"></script>
     <script src="Particle.js"></script>

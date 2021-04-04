@@ -2,24 +2,25 @@ class Particle {
   constructor(canvas, buttons) {
     this.canvas = canvas;
     this.context = this.canvas.getContext('2d');
-    this.x = 0;
+    this.x = Math.random() * this.canvas.width;
     this.y = Math.random() * this.canvas.height;
     this.baseSpeed = Math.random() * 5;
+    this.speed = this.baseSpeed;
     this.size = Math.random() * 1.5;
     this.buttons = buttons;
     this.angle = 0;
   }
 
   update(pixels) {
-    const speed = pixels.getPixel(this.x, this.y).getRelativeBrightness();
-    this.size = speed;
-    const movement = speed + this.baseSpeed;
+    this.speed = pixels.getPixel(this.x, this.y).getRelativeBrightness();
+    this.size = this.speed;
+    const movement = this.speed + this.baseSpeed;
 
-    this.angle += speed / 15;
-    this.x += movement + Math.cos(this.angle) * 2;
-    if (this.x < 0 || this.x >= this.canvas.width) this.x = 0;
+    this.angle += this.speed / 15;
+    // this.x += movement + Math.cos(this.angle) * 2;
+    // if (this.x < 0 || this.x >= this.canvas.width) this.x = 0;
 
-    this.y += movement + Math.sin(this.angle) * 2;
+    this.y += movement;
     if (this.y < 0 || this.y >= this.canvas.height) this.y = 0;
 
     // this.context.globalCompositeOperation = 'luminosity';

@@ -1,0 +1,49 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-size: 1.2rem;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  overflow: none;
+  overscroll-behavior: none;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: cornflowerblue;
+}
+
+a {
+  text-decoration: none;
+
+  button {
+    position: relative;
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+    padding: 0.2rem 0.56rem;
+    border-radius: 9999px;
+    padding: 0.8rem 1.4rem;
+    background-color: darksalmon;
+    transition: all 0.15s ease;
+    border: 2px solid cornsilk;
+
+    &:active,
+    &:focus {
+      outline: none;
+    }
+
+    &:active:focus {
+      transform: translateY(3px);
+      border-color: rgb(192, 188, 167);
+    }
+
+    &:hover {
+      background-color: darkslateblue;
+      color: lightgray;
+    }
+  }
+}

@@ -13,26 +13,32 @@ body {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
+  background-color: cornflowerblue;
 }
 
 a {
   text-decoration: none;
 }
-
-a > button:hover {
+a button {
+  position: relative;
   cursor: pointer;
-}
-
-button {
   width: 100%;
   height: 100%;
   padding: 0.2rem 0.56rem;
   border-radius: 9999px;
   padding: 0.8rem 1.4rem;
-  margin: 1rem;
+  background-color: darksalmon;
+  transition: all 0.15s ease;
+  border: 2px solid cornsilk;
 }
-
-button:active,
-button:focus {
+a button:active, a button:focus {
   outline: none;
+}
+a button:active:focus {
+  transform: translateY(3px);
+  border-color: #c0bca7;
+}
+a button:hover {
+  background-color: darkslateblue;
+  color: lightgray;
 }

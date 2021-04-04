@@ -10,12 +10,11 @@ const inArraysOf = (length) => (t, c) => {
   return t;
 };
 
-const getPixels = (canvas) => {
+const getPixels = (canvas, img) => {
   const context = canvas.getContext('2d');
   const scannedImage = context.getImageData(0, 0, canvas.width, canvas.height);
   return new Pixels(
-    canvas.width,
-    canvas.height,
+    canvas,
     scannedImage.data.reduce(inArraysOf(4), []).map((e) => new Pixel(...e))
   );
 };
