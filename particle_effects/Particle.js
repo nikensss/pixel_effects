@@ -29,7 +29,7 @@ class Particle {
 
   update(mouse) {
     const d = this.distanceTo.call(this.pos, mouse);
-    const maxDistance = 50;
+    const maxDistance = 20;
     if (d >= maxDistance) {
       this.x = this.pixel.x + (Math.random() - 0.5) * 2;
       this.y = this.pixel.y + (Math.random() - 0.5) * 2;
@@ -41,13 +41,11 @@ class Particle {
       y: this.pos.y > mouse.y ? 1 : -1
     };
 
-    const bounce = 50;
-    const movement = (d / maxDistance) * bounce;
+    const bounce = 20;
+    const movement = maxDistance - d + Math.random() * 2;
 
-    this.x = this.pixel.x + bounce / 2 + (Math.random() - 0.5) * bounce;
-    this.y = this.pixel.y + bounce / 2 + (Math.random() - 0.5) * bounce;
-    // this.x = this.pixel.x + (Math.random() - 0.5) * 2 + movement * direction.x;
-    // this.y = this.pixel.y + (Math.random() - 0.5) * 2 + movement * direction.y;
+    this.x = this.pixel.x + direction.x * movement;
+    this.y = this.pixel.y + direction.y * movement;
   }
 
   draw(pixels) {
