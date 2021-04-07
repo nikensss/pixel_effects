@@ -10,7 +10,8 @@ body {
   width: 100vw;
   height: 100vh;
   overflow: hidden;
-  overscroll-behavior: none;
+  -ms-scroll-chaining: none;
+      overscroll-behavior: none;
   background-color: burlywood;
   font-family: "Courier New", Courier, monospace;
 }

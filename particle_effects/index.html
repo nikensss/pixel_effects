@@ -5,9 +5,32 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Pixel effects</title>
-    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/output.css" />
   </head>
+
   <body>
+    <div class="mouse" id="mouse"></div>
+    <div class="settings">
+      <div class="setting-container">
+        <label for="sampler">Sampling rate</label>
+        <input
+          type="number"
+          id="sampler"
+          class="slider"
+          min="110"
+          max="500"
+          value="138"
+        />
+      </div>
+      <div class="setting-container">
+        <label for="show-connections">Show connections</label>
+        <input id="show-connections" type="checkbox" checked="checked" />
+      </div>
+      <div class="setting-container">
+        <label for="color-picker">Connection color</label>
+        <input type="color" id="color-picker" value="#1E90FF" />
+      </div>
+    </div>
     <canvas id="canvas1"></canvas>
 
     <script src="Mouse.js"></script>

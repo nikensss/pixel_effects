@@ -1,3 +1,14 @@
+const MAX_DISTANCE = document.getElementById('mouse').offsetWidth / 2;
+
+const showConnectionsCheckbox = document.getElementById('show-connections');
+function showConnections() {
+  return showConnectionsCheckbox.checked;
+}
+
+const connectionColorPicker = document.getElementById('color-picker');
+function selectedColor() {
+  return connectionColorPicker.value;
+}
 class Particle {
   constructor(canvas, pixel) {
     this.canvas = canvas;
@@ -7,7 +18,6 @@ class Particle {
     this.x = pixel.x;
     this.y = pixel.y;
     this.neighbors = [];
-    this.showConnections = true;
   }
 
   addNeighbor(n) {
@@ -28,39 +38,44 @@ class Particle {
     };
   }
 
+  get offset() {
+    return (Math.random() - 0.5) * 2;
+  }
+
   update(mouse) {
     const d = this.distanceTo.call(this.pos, mouse);
-    const maxDistance = 20;
-    if (d >= maxDistance) {
-      this.x = this.pixel.x + (Math.random() - 0.5) * 2;
-      this.y = this.pixel.y + (Math.random() - 0.5) * 2;
-      this.showConnections = true;
+    if (d >= MAX_DISTANCE) {
+      this.x = this.pixel.x + this.offset;
+      this.y = this.pixel.y + this.offset;
       return;
     }
 
-    this.showConnections = false;
     const direction = {
-      x: this.pos.x > mouse.x ? 1 : -1,
-      y: this.pos.y > mouse.y ? 1 : -1
+      x: (this.pos.x - mouse.x) / MAX_DISTANCE,
+      y: (this.pos.y - mouse.y) / MAX_DISTANCE
     };
 
-    const movement = ((maxDistance - d) / maxDistance ** 2) * maxDistance;
+    const relativeDistance = d / MAX_DISTANCE;
+    const forceModulationFactor = 1 - relativeDistance ** 2;
+    const movement = MAX_DISTANCE * forceModulationFactor;
 
-    this.x = this.pixel.x + Math.random() * 2 + direction.x * (maxDistance - d); //movement;
-    this.y = this.pixel.y + Math.random() * 2 + direction.y * (maxDistance - d); //movement;
+    this.x = this.pixel.x + this.offset + direction.x * movement;
+    this.y = this.pixel.y + this.offset + direction.y * movement;
   }
 
-  draw(pixels) {
-    if (this.showConnections) {
-      this.neighbors.forEach((n) => {
-        this.context.beginPath();
-        this.context.strokeStyle = 'cornflowerblue';
-        this.context.moveTo(this.x, this.y);
-        this.context.lineTo(n.x, n.y);
-        this.context.lineWidth = 1;
-        this.context.stroke();
-        this.context.closePath();
-      });
+  draw() {
+    if (showConnections()) {
+      this.neighbors
+        .filter((p) => this.distanceTo(p) < MAX_DISTANCE)
+        .forEach((n) => {
+          this.context.beginPath();
+          this.context.strokeStyle = selectedColor();
+          this.context.moveTo(this.x, this.y);
+          this.context.lineTo(n.x, n.y);
+          this.context.lineWidth = 1;
+          this.context.stroke();
+          this.context.closePath();
+        });
     }
     this.context.beginPath();
     this.context.fillStyle = this.pixel.getColor();

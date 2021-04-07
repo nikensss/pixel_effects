@@ -16,6 +16,7 @@ class Pixels {
   }
 
   asParticles(offset) {
+    if (offset <= 0) offset = 1;
     const particles = this.pixels
       .map((p) => new Particle(this.c, p))
       .filter((p, i) => i % offset === 0);

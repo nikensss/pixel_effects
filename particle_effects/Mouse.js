@@ -6,9 +6,16 @@ class Mouse {
     this.#x = 0;
     this.#y = 0;
 
+    const mouse = document.getElementById('mouse');
     window.addEventListener('mousemove', (event) => {
       this.#x = event.x;
       this.#y = event.y;
+      console.log(mouse.style.width);
+      mouse.style.transform = `translate(${
+        this.#x - mouse.offsetWidth / 2
+      }px, ${this.#y - mouse.offsetHeight / 2}px)`;
+      mouse.style.visibility = 'visible';
+      mouse.style.backgroundColor = 'rgba(89,172,45,0.3)';
     });
   }
 
