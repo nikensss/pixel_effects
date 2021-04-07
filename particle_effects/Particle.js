@@ -7,6 +7,7 @@ class Particle {
     this.x = pixel.x;
     this.y = pixel.y;
     this.neighbors = [];
+    this.showConnections = true;
   }
 
   addNeighbor(n) {
@@ -33,31 +34,34 @@ class Particle {
     if (d >= maxDistance) {
       this.x = this.pixel.x + (Math.random() - 0.5) * 2;
       this.y = this.pixel.y + (Math.random() - 0.5) * 2;
+      this.showConnections = true;
       return;
     }
 
+    this.showConnections = false;
     const direction = {
       x: this.pos.x > mouse.x ? 1 : -1,
       y: this.pos.y > mouse.y ? 1 : -1
     };
 
-    const bounce = 20;
-    const movement = maxDistance - d + Math.random() * 2;
+    const movement = ((maxDistance - d) / maxDistance ** 2) * maxDistance;
 
-    this.x = this.pixel.x + direction.x * movement;
-    this.y = this.pixel.y + direction.y * movement;
+    this.x = this.pixel.x + Math.random() * 2 + direction.x * (maxDistance - d); //movement;
+    this.y = this.pixel.y + Math.random() * 2 + direction.y * (maxDistance - d); //movement;
   }
 
   draw(pixels) {
-    this.neighbors.forEach((n) => {
-      this.context.beginPath();
-      this.context.strokeStyle = 'cornflowerblue';
-      this.context.moveTo(this.x, this.y);
-      this.context.lineTo(n.x, n.y);
-      this.context.lineWidth = 1;
-      this.context.stroke();
-      this.context.closePath();
-    });
+    if (this.showConnections) {
+      this.neighbors.forEach((n) => {
+        this.context.beginPath();
+        this.context.strokeStyle = 'cornflowerblue';
+        this.context.moveTo(this.x, this.y);
+        this.context.lineTo(n.x, n.y);
+        this.context.lineWidth = 1;
+        this.context.stroke();
+        this.context.closePath();
+      });
+    }
     this.context.beginPath();
     this.context.fillStyle = this.pixel.getColor();
     this.context.arc(this.x, this.y, this.size, 0, Math.PI * 2);
