@@ -52,20 +52,10 @@ class Particle {
       return;
     }
 
-    const direction = {
-      x: (this.pos.x - mouse.x) / MAX_DISTANCE,
-      y: (this.pos.y - mouse.y) / MAX_DISTANCE
-    };
+    const s = d === 0 ? 1 : MAX_DISTANCE / d;
 
-    const relativeDistance = d / MAX_DISTANCE;
-    const forceModulationFactor = 1 - relativeDistance ** 2;
-    const movement = MAX_DISTANCE * forceModulationFactor;
-
-    const scale = 1 + movement / MAX_DISTANCE;
-    this.size = this.baseSize * scale;
-
-    this.x = this.pixel.x + this.offset + direction.x * movement;
-    this.y = this.pixel.y + this.offset + direction.y * movement;
+    this.x = s * (this.pos.x - mouse.x) + (mouse.x - this.canvas.offsetLeft);
+    this.y = s * (this.pos.y - mouse.y) + (mouse.y - this.canvas.offsetTop);
   }
 
   draw() {
