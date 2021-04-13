@@ -13,7 +13,8 @@ class Particle {
   constructor(canvas, pixel) {
     this.canvas = canvas;
     this.context = this.canvas.getContext('2d');
-    this.size = 2.5;
+    this.baseSize = 2.5;
+    this.size = this.baseSize;
     this.pixel = pixel;
     this.x = pixel.x;
     this.y = pixel.y;
@@ -47,6 +48,7 @@ class Particle {
     if (d >= MAX_DISTANCE) {
       this.x = this.pixel.x + this.offset;
       this.y = this.pixel.y + this.offset;
+      this.size = this.baseSize;
       return;
     }
 
@@ -58,6 +60,9 @@ class Particle {
     const relativeDistance = d / MAX_DISTANCE;
     const forceModulationFactor = 1 - relativeDistance ** 2;
     const movement = MAX_DISTANCE * forceModulationFactor;
+
+    const scale = 1 + movement / MAX_DISTANCE;
+    this.size = this.baseSize * scale;
 
     this.x = this.pixel.x + this.offset + direction.x * movement;
     this.y = this.pixel.y + this.offset + direction.y * movement;

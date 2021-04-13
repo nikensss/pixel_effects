@@ -18,10 +18,7 @@ img.addEventListener('load', () => {
   let particles = pixels.asParticles(sampler.value);
   sampler.onchange = () => {
     particles = pixels.asParticles(
-      Math.min(
-        Math.max(sampler.value, sampler.getAttribute('min')),
-        sampler.getAttribute('max')
-      )
+      Math.min(Math.max(sampler.value, sampler.getAttribute('min')), sampler.getAttribute('max'))
     );
   };
 
