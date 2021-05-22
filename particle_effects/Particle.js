@@ -1,14 +1,5 @@
 const MAX_DISTANCE = document.getElementById('mouse').offsetWidth / 2;
 
-const showConnectionsCheckbox = document.getElementById('show-connections');
-function showConnections() {
-  return showConnectionsCheckbox.checked;
-}
-
-const connectionColorPicker = document.getElementById('color-picker');
-function selectedColor() {
-  return connectionColorPicker.value;
-}
 class Particle {
   constructor(canvas, pixel) {
     this.canvas = canvas;
@@ -91,4 +82,14 @@ function randomRGB() {
   const b = Math.floor(Math.random() * 256);
 
   return `rgb(${r},${g},${b})`;
+}
+
+function showConnections() {
+  const showConnectionsCheckbox = document.getElementById('show-connections');
+  return showConnectionsCheckbox.checked;
+}
+
+function selectedColor() {
+  const connectionColorPicker = document.getElementById('color-picker');
+  return connectionColorPicker.value;
 }
