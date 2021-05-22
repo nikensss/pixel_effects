@@ -30,12 +30,23 @@
         <label for="color-picker">Connection color</label>
         <input type="color" id="color-picker" value="#1E90FF" />
       </div>
+      <div class="setting-container">
+        <label for="particle-behaviour">Particle behavior</label>
+        <select
+          onchange="setParticleBehavior()"
+          name="particle behaviors"
+          id="particle-behavior"
+        >
+          <option value="repulsion">Repulsion</option>
+          <option value="lensing">Lensing</option>
+        </select>
+      </div>
     </div>
     <canvas id="canvas1"></canvas>
 
     <script src="Mouse.js"></script>
-    <script src="effects/Repulsion.js"></script>
-    <script src="effects/Lensing.js"></script>
+    <script src="behaviors/Repulsion.js"></script>
+    <script src="behaviors/Lensing.js"></script>
     <script src="Particle.js"></script>
     <script src="../js/Pixel.js"></script>
     <script src="../js/Pixels.js"></script>

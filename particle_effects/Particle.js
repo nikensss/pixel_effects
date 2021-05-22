@@ -1,5 +1,10 @@
 const MAX_DISTANCE = document.getElementById('mouse').offsetWidth / 2;
 
+const BEHAVIOR = {
+  repulsion: repulsion,
+  lensing: lensing
+};
+
 class Particle {
   constructor(canvas, pixel) {
     this.canvas = canvas;
@@ -10,7 +15,11 @@ class Particle {
     this.x = pixel.x;
     this.y = pixel.y;
     this.neighbors = [];
-    this.effect = lensing.bind(this);
+    this.behavior = repulsion.bind(this);
+  }
+
+  setBehavior(behaviorName) {
+    this.behavior = BEHAVIOR[behaviorName].bind(this);
   }
 
   addNeighbor(n) {
@@ -36,7 +45,7 @@ class Particle {
   }
 
   update(mouse) {
-    this.effect(mouse);
+    this.behavior(mouse);
   }
 
   draw() {

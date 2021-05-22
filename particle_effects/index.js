@@ -7,6 +7,7 @@ sampler.clampedValue = function () {
   if (this.value > max) return max;
   return this.value;
 };
+const particleBehavior = document.getElementById('particle-behavior');
 
 const img = new Image();
 img.src = 'code.svg';
@@ -23,8 +24,12 @@ img.addEventListener('load', () => {
   context.putImageData(pixels.toImage(), 0, 0);
 
   let particles = pixels.asParticles(sampler.value);
+  particles.forEach((p) => p.setBehavior(particleBehavior.value));
   sampler.onchange = () => {
     particles = pixels.asParticles(sampler.clampedValue());
+  };
+  particleBehavior.onchange = () => {
+    particles.forEach((p) => p.setBehavior(particleBehavior.value));
   };
 
   const animate = () => {
