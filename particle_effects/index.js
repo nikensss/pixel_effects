@@ -1,6 +1,13 @@
 'use strict';
 const mouse = new Mouse();
 const sampler = document.getElementById('sampler');
+sampler.clampedValue = function () {
+  const [max, min] = [this.getAttribute('max'), this.getAttribute('min')];
+  if (this.value < min) return min;
+  if (this.value > max) return max;
+  return this.value;
+};
+
 const img = new Image();
 img.src = 'code.svg';
 
@@ -17,12 +24,7 @@ img.addEventListener('load', () => {
 
   let particles = pixels.asParticles(sampler.value);
   sampler.onchange = () => {
-    particles = pixels.asParticles(
-      Math.min(
-        Math.max(sampler.value, sampler.getAttribute('min')),
-        sampler.getAttribute('max')
-      )
-    );
+    particles = pixels.asParticles(sampler.clampedValue());
   };
 
   const animate = () => {
